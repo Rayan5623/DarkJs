@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<style>
+body{
+    padding: 25px;
+    background-color: white;
+    color:black;
+    font-size: 25px;
+}
+.dark-mode{
+    background-color: black;
+    color: white;
+}
+table tr{
+    text-align: left;
+}
+img{
+    width: 100px;
+    height: 50px;
+}
+</style>
+<head>
+</head>
+<body id="body">
+    <h1>Light Switcher</h1>
+    <button id="myBtn">
+        <img id='btnim' src="./switch.png">
+    </button>
+    <script>
+            
+        function darkMode(){
+            var a = document.body;
+            a.classList.toggle("dark-mode");
+        }
+
+        function getColor(){
+            BodyObj = document.getElementById("body")
+            let BodyObjBgColor = window.getComputedStyle(BodyObj).backgroundColor;
+            return(BodyObjBgColor);
+        }
+        
+        function printBodyj(){
+            let bodyj = getColor();
+            if (bodyj==="rgb(0, 0, 0)"){
+                status="OFF";
+            }else{
+                status="ON";
+            }
+            document.getElementById('status').innerHTML= status;
+        }
+
+        let psd = 0;
+        function pressed(){
+            psd++;
+            document.getElementById('press').innerHTML= psd;
+            return psd;
+        }
+
+        var btn = document.getElementById("myBtn");
+
+        btn.addEventListener("click", darkMode);
+        btn.addEventListener("click", getColor);
+        btn.addEventListener("click", printBodyj);
+        btn.addEventListener("click", pressed);
+
+    </script>
+    <table>
+        <tr>
+            <th>The button was pressed: </th>
+            <td><span id='press'></span> times</td>
+        </tr>
+        <tr>
+            <th>The light is: </th>
+            <td><span id='status'></span></td>
+        </table> 
+</body>
+</html>
